@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <h>创建账号</h>
+<div>
+    <form>
+    <label>用户名</label><br>
+    <input id="username">
+    <p style="color:green" id="demo1"></p>
+    
+    <label>密码</label><br>
+    <input id="password">
+    <p style="color:green" id="demo2"></p>
+    
+    <label>确认密码</label><br>
+    <input id="password2">
+    <p style="color:green" id="demo3"></p>
+    
+    <label>电话号码</label><br>
+    <input id="phonenumber">
+    <p style="color:green" id="demo4"></p>
+    </form>
+</div>
+    <button type="button" onclick="check()">提交</button>
+    <script>
+        function usernamech() {
+            var x;
+            var reg= /^[a-zA-Z0-9_-]{4,16}$/;
+            x = document.getElementById("username").value;
+            flag = reg.test(x);
+            if (!flag||(x.length>16||x.length<4)||x=="") {
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+        function passwordch(){
+            var y;
+            var reg2=/^1[012345]{2,3}[6789]{4,6}[abcdABCD]{7,8}$/;
+            y = document.getElementById("password").value;
+            if(y.length!=8){
+            return false;}
+            else{
+                if(reg2.test(y)){
+                return true;}
+                else{
+                    return false;
+                }
+            }
+            }
+        function password2ch(){
+            flag2=passwordch();
+            if(!flag){
+                return false;
+            }
+            else if(flag&&document.getElementById("password").value==document.getElementById("password2").value){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        function phonenumberch(){
+            var z;
+            var reg3=/^1[3456789]\\d{9}$/;
+            z=document.getElementById("phonenumber").value;
+            if(z.length!=11){
+            return false;}
+            else{
+                if(reg3.test(z)){
+                return true;}
+                else{
+                    return false;
+                }
+            }
+        }
+        function check(){
+            var a,b,c,d,text1,text2,text3,text4;
+            a=usernamech();
+            b=passwordch();
+            c=password2ch();
+            d=phonenumberch();
+            if(a){
+                text1 = "用户名合法";
+            }
+            else {
+                text1 = "用户名不合法";
+                document.getElementById("demo1").style.color =red;
+            }
+            document.getElementById("demo1").innerHTML = text1;
+            if(b){
+                text2 = "密码合法";
+            }
+            else {
+                text2 = "密码不合法";
+                document.getElementById("demo2").style.color =red;
+            }
+            document.getElementById("demo2").innerHTML = text2;
+            if(c){
+                text3 = "密码一致";
+            }
+            else {
+                text3 = "密码不合法或不一致";
+                document.getElementById("demo3").style.color =red;
+            }
+            document.getElementById("demo3").innerHTML = text3;
+            if(d){
+                text4 = "手机号码合法";
+            }
+            else {
+                text4 = "手机号码不合法";
+                document.getElementById("demo4").style.color =red;
+            }
+            document.getElementById("demo4").innerHTML = text4;
+        }
+    </script>
+</body>
+</html>
